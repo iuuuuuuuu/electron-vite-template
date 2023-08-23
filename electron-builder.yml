@@ -1,0 +1,60 @@
+appId: com.electron.app
+productName: electron-vite-template
+directories:
+  buildResources: build
+files:
+  - '!**/.vscode/*'
+  - '!src/*'
+  - '!electron.vite.config.{js,ts,mjs,cjs}'
+  - '!{.eslintignore,.eslintrc.cjs,.prettierignore,.prettierrc.yaml,dev-app-update.yml,CHANGELOG.md,README.md}'
+  - '!{.env,.env.*,.npmrc,pnpm-lock.yaml}'
+  - '!{tsconfig.json,tsconfig.node.json,tsconfig.web.json}'
+asarUnpack:
+  - resources/**
+afterSign: build/notarize.js
+win:
+  executableName:
+    electron-vite-template
+    # target: ['portable'] #免安装
+  # executableName: LeagueClientUx #进程名证书+白名单
+  # 获取管理员权限 最高权限
+  # requestedExecutionLevel: highestAvailable
+  # icon: ./resources/icon.ico
+  extraResources:
+    from: ./resources/exApp
+    to: extraResources
+  # 数字签名
+  # verifyUpdateCodeSignature: false
+  # signDlls: false
+  # signingHashAlgorithms:
+  #   - 'sha256'
+  # rfc3161TimeStampServer: http://timestamp.comodoca.com/rfc3161
+  # certificateFile: ./resources/cert.pfx
+  # certificatePassword: xiaowuyaya
+nsis:
+  artifactName: ${name}-${version}-setup.${ext}
+  shortcutName: ${productName}
+  uninstallDisplayName: ${productName}
+  createDesktopShortcut: always
+mac:
+  entitlementsInherit: build/entitlements.mac.plist
+  extendInfo:
+    - NSCameraUsageDescription: Application requests access to the device's camera.
+    - NSMicrophoneUsageDescription: Application requests access to the device's microphone.
+    - NSDocumentsFolderUsageDescription: Application requests access to the user's Documents folder.
+    - NSDownloadsFolderUsageDescription: Application requests access to the user's Downloads folder.
+dmg:
+  artifactName: ${name}-${version}.${ext}
+linux:
+  target:
+    - AppImage
+    - snap
+    - deb
+  maintainer: electronjs.org
+  category: Utility
+appImage:
+  artifactName: ${name}-${version}.${ext}
+npmRebuild: false
+publish:
+  provider: generic
+  url: https://example.com/auto-updates
