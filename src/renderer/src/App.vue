@@ -5,6 +5,7 @@ import getAppStore, { useAppStore, getAppStoreKeys } from '@renderer/store/getAp
 import ipcEventListen from '@renderer/common/ipcEventListen'
 import { ipcEventNames } from './config/renderConfigs'
 import asyncStore from '@renderer/common/module/asyncStore'
+import iuMiddle from './components/iuMiddle.vue'
 const appStore = useAppStore()
 const { userConfig, winRecord } = getAppStore()
 
@@ -66,7 +67,7 @@ ipcEventListen.on(ipcEventNames.WIN_CONFIG, (config: winConfigType) => {
               'bg-slate-900': userConfig.isThemeDark
             }"
           >
-            <RouterView />
+            <iuMiddle />
           </n-el>
         </n-config-provider>
       </n-dialog-provider>
