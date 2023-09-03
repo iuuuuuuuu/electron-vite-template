@@ -8,7 +8,11 @@ export default () => {
     if (!elStoreVal) return
     const elStorekeyLength = Object.keys(elStoreVal as string[]).length
     if (elStorekeyLength > piniakeyLength || elStorekeyLength == piniakeyLength) {
-      appStore[key] = window.elStore.appStore.get(key)
+      let data = window.elStore.appStore.get(key)
+      try {
+        data = JSON.parse(data as string)
+      } catch (error) {}
+      appStore[key] = data
     }
   })
 }

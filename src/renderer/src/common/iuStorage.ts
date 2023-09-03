@@ -1,4 +1,4 @@
-type storageKey = 'token' | 'refreshToken' | 'userInfo'
+type storageKey = 'token' | 'refreshToken' | 'userInfo' | 'expiresIn'
 
 export default class iuStorage {
   public constructor() {}
@@ -7,9 +7,9 @@ export default class iuStorage {
     localStorage.setItem(key, value)
   }
   public static getItem<T>(key: storageKey): T {
-    const value = localStorage.getItem(key)
+    let value = localStorage.getItem(key)
     try {
-      value && JSON.parse(value)
+      value && (value = JSON.parse(value))
     } catch (error) {}
     return value as T
   }
