@@ -13,5 +13,8 @@ export default {
       colors: {}
     }
   },
-  plugins: []
+  plugins: [],
+  corePlugins: {
+    preflight: false
+  }
 }
