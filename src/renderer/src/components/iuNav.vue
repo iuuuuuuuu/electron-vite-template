@@ -43,8 +43,8 @@ const sendWinEvent = (eventName: winActionType) => {
 <template>
   <div id="nav" class="w-full">
     <div
-      class="bar flex center h-5 justify-between px-1 absolute w-full z-50 bg-slate-100 rounded-md"
-      :class="userConfig.isThemeDark ? 'bg-slate-700' : 'bg-slate-100'"
+      class="bar flex center h-5 justify-between px-1 absolute w-full z-50 rounded-md border-b-rose-400"
+      :class="userConfig.isThemeDark ? 'bg-slate-100' : ' bg-gray-50'"
     >
       <div class="btnBox left flex justify-center center">
         <img class="cssRotateSAKURA w-4 h-4" src="../assets/icons.svg" alt="logo" />

@@ -74,8 +74,4 @@ ipcEventListen.on(ipcEventNames.WIN_CONFIG, (config: winConfigType) => {
   </n-notification-provider>
 </template>
 
-<style lang="less">
-#bigBox {
-  border: solid 0.1vh var(--divider-color);
-}
-</style>
+<style lang="less"></style>
