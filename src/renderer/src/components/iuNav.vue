@@ -43,7 +43,7 @@ const sendWinEvent = (eventName: winActionType) => {
 <template>
   <div id="nav" class="w-full">
     <div
-      class="bar flex center h-5 justify-between px-1 absolute w-full z-50 rounded-md border-b-rose-400"
+      class="bar flex center justify-between px-1 absolute w-full z-50 rounded-md border-b-rose-400"
       :class="userConfig.isThemeDark ? 'bg-slate-100' : ' bg-gray-50'"
     >
       <div class="btnBox left flex justify-center center">
@@ -115,7 +115,7 @@ const sendWinEvent = (eventName: winActionType) => {
       </div>
     </div>
   </div>
-  <div class="h-5"></div>
+  <div style="height: 2.5vh"></div>
 </template>
 <style scoped lang="less">
 /*  */
@@ -124,6 +124,8 @@ const sendWinEvent = (eventName: winActionType) => {
   top: 0;
   left: 0;
   z-index: 999;
+  height: 2.5vh;
+  overflow: hidden;
   .bar {
     -webkit-app-region: drag;
   }

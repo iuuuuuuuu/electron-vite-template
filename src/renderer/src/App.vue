@@ -75,4 +75,10 @@ ipcEventListen.on(ipcEventNames.WIN_CONFIG, (config: winConfigType) => {
   </n-notification-provider>
 </template>
 
-<style lang="less"></style>
+<style lang="less">
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+</style>

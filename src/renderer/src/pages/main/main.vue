@@ -38,9 +38,8 @@ router.push(toActiveKey as string)
 </script>
 <template>
   <iuNav />
-  <n-layout has-sider id="layout" class="w-screen h-screen">
+  <n-layout has-sider id="layout" class="w-screen" style="height: 97.5vh">
     <n-layout-sider bordered collapse-mode="width" :collapsed-width="64" :width="180">
-      <div class="h-5"></div>
       <n-menu
         v-model:value="activeRoute"
         :collapsed-width="64"
@@ -48,10 +47,10 @@ router.push(toActiveKey as string)
         :options="routesMenu"
       />
     </n-layout-sider>
-    <n-layout style="padding: 10px; height: 100%">
+    <n-layout style="padding: 10px" :native-scrollbar="false">
       <n-card>
-        <n-scrollbar>
-          <div class="h-5"></div>
+        <n-scrollbar style="height: 89vh">
+          <div v-for="i in 100">{{ i }}</div>
           <router-view v-slot="{ Component }">
             <transition
               name="custom-classes"
@@ -71,4 +70,7 @@ router.push(toActiveKey as string)
 </template>
 <style scoped lang="less">
 /*  */
+.n-scrollbar-content {
+  height: 100%;
+}
 </style>
