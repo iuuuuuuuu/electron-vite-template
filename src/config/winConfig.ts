@@ -9,6 +9,7 @@ export const winConfigs: {
     name: winNames.MASTER_WIN,
     width: 1400,
     height: 800,
+    show: true,
     redirectTo: {
       now: true,
       url: '/main'

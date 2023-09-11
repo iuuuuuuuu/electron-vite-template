@@ -10,7 +10,6 @@ export default function createMasterWin() {
     masterWin = createWins(
       winName,
       {
-        show: true,
         height: winSizeConfig.height,
         width: winSizeConfig.width
       },

@@ -2,6 +2,7 @@ interface winConfigType {
   name: undefined | string
   width?: number
   height?: number
+  show?: boolean
   redirectTo?: {
     now?: boolean
     url?: string

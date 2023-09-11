@@ -1,7 +1,7 @@
 import { BrowserWindow, BrowserWindowConstructorOptions, app, shell } from 'electron'
 import { RouteLocationRaw } from 'vue-router'
 
-import path from 'path'
+import * as path from 'path'
 import { appIcon, isDev } from '../../config/dynamicConfig'
 import { ipcEventNames } from '../../config/staticConfig'
 import { winConfigs } from '../../config/winConfig'
@@ -45,6 +45,7 @@ export class myAppWindw extends BrowserWindow {
       height: config.height,
       minHeight: config.height,
       maxHeight: config.height,
+      show: false,
       useContentSize: false,
       // 禁止用户改变窗口大小
       resizable: false,
@@ -82,20 +83,11 @@ export class myAppWindw extends BrowserWindow {
       ...(process.platform === 'linux' ? { icon: appIcon } : {})
     }
     const finalConfig = Object.assign(baseConfig, config)
-
     super(finalConfig)
     // 名字
     this.name = winName
     this.on('ready-to-show', () => {
-      if (config.show) {
-        this.show()
-      }
-      if (isDev) {
-        this.show()
-        setTimeout(() => {
-          this.webContents.openDevTools()
-        }, 1000 * 1)
-      }
+      isDev && this.webContents.openDevTools()
 
       // 变回原来的大小 并且跳转到指定页面
 
@@ -149,6 +141,7 @@ export class myAppWindw extends BrowserWindow {
     to && this.redirectTo(to)
     setTimeout(() => {
       this.setOpacity(1)
+      // this.show()
     }, 500)
   }
   /**
@@ -184,9 +177,8 @@ export const templateWinConfig = (config?: Electron.BrowserWindowConstructorOpti
 ipcMainSubsice.on(ipcEventNames.WIN_ACTION, (params: { action: winActionType; name: string }) => {
   const { action, name } = params
   // console.log('收到窗口操作', params)
-
   const win = allWindows[name]
-  if (!win) console.warn('窗口不存在')
+  if (!win) console.warn('窗口不存在', allWindows)
   switch (action) {
     case 'close': {
       win.close()

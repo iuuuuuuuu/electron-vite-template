@@ -50,6 +50,14 @@ window.addEventListener('storage', () => {
 })
 ipcEventListen.on(ipcEventNames.WIN_CONFIG, (config: winConfigType) => {
   winRecord.value = config
+  if (config.show) {
+    setTimeout(() => {
+      ipcEventListen.send(ipcEventNames.WIN_ACTION, {
+        action: 'show',
+        name: config.name
+      })
+    }, 200)
+  }
 })
 </script>
 
