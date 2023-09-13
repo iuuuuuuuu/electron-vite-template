@@ -13,8 +13,8 @@ export default {
       colors: {}
     }
   },
-  plugins: [],
   corePlugins: {
     preflight: false
   }
+  // plugins: [require('daisyui')]
 }
